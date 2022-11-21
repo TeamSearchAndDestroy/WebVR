@@ -37,7 +37,7 @@ const MouseDebug = () => {
 
   return position === null ? null : (
     <div className="mouse-debug-container">
-      {position.lat + " " + position.lng}
+      {position.lat.toFixed(4) + " " + position.lng.toFixed(4)}
     </div>
   )
 }

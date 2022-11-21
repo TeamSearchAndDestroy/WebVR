@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { VRButton } from 'three/examples/jsm/webxr/VRButton';
 
 class Panorama {
   static instance: Panorama;
@@ -31,6 +32,7 @@ class Panorama {
 
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.xr.enabled = true;
     
     // this.renderer.setClearColor( 0xff0000, 1);
     
@@ -42,6 +44,7 @@ class Panorama {
   public initElement = (element: HTMLDivElement) => {
     this.element = element;
     this.element.appendChild(this.renderer.domElement);
+    this.element.appendChild(VRButton.createButton(this.renderer));
     this.element.addEventListener('mousedown', this.onDocumentMouseDown, false);
     this.element.addEventListener('mousewheel', (e) => this.onDocumentMouseWheel(e as WheelEvent), false);
     this.onWindowResized();
@@ -119,7 +122,7 @@ class Panorama {
 
   private animate = () => {
     this.render();
-    requestAnimationFrame(this.animate);
+    this.renderer.setAnimationLoop(this.animate);
   }
 
   private render() {

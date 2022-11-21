@@ -13,7 +13,12 @@ const PanoramaComponent = () => {
   }, []);
 
   return (
-    <div ref={canvasRef} className="canvas-container"></div>
+    <>
+      <div ref={canvasRef} className="canvas-container"></div>
+      <button className="back-button" onClick={() => {
+        appState.setSelectedView(Views.MAP_VIEW);
+      }}>Back</button>
+    </>
     // <button onClick={() => {
     //   appState.setSelectedView(Views.MAP_VIEW);
     // }}>

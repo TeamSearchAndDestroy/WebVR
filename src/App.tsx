@@ -12,7 +12,7 @@ export enum Views {
 }
 
 class AppState {
-  selectedView = Views.PANORAMA_VIEW;
+  selectedView = Views.MAP_VIEW;
 
   constructor() {
       makeAutoObservable(this)
