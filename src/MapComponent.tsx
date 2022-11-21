@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
-import { LatLng, LeafletMouseEvent, LocationEvent, Popup } from "leaflet";
+import L, { LatLng, LeafletMouseEvent, LocationEvent, Popup } from "leaflet";
 import { appState, Views } from "./App";
 
 type TMarker = {
@@ -58,7 +58,11 @@ const Markers = () => {
   )
 }
 
-
+const myIcon = L.icon({
+  iconUrl: './camera_pin.png',
+  iconSize: [51, 64],
+  iconAnchor: [26, 32]
+})
 
 const ClickableMarker = (props: TMarker) => {
   const eventHandlers = useMemo(
@@ -74,6 +78,7 @@ const ClickableMarker = (props: TMarker) => {
   return (
     <Marker
       position={new LatLng(props.lat, props.lng)}
+      icon={myIcon}
       eventHandlers={eventHandlers}>
 
     </Marker>
